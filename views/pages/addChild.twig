@@ -1,0 +1,41 @@
+{% extends "../layouts/base.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/addChild.css">
+{% endblock %}
+
+{% block title %}
+    <title>{{title}}</title>
+{% endblock %}
+
+{% block main %}
+    <main>
+        <section class="subscribe-section">
+            <div class="form-container">
+                <h2>Ajouter un enfant</h2>
+
+                <!-- Formulaire uniquement pour l'ajout d'un enfant -->
+                <form method="post" action="/addChild">
+                    <div>
+                        <label for="firstname">Prénom de l'enfant</label>
+                        <input id="firstname" type="text" name="firstname" required>
+                        {% if error %}
+                            <p class="error">{{ error.errors.firstname.message }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <label for="points">Nombre de points</label>
+                        <input type="number" name="points" id="points" value="0" min="0" required>
+                    </div>
+
+                    <div>
+                        <button type="submit">Enregistrer</button>
+                    </div>
+                </form>
+
+                <a href="/guideDashboard" class="back-link">Retour au dashboard du guide</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

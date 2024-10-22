@@ -1,0 +1,15 @@
+/* Réinitialiser les marges et les paddings du body */
+html, body {
+    margin: 0; /* Supprime les marges par défaut */
+    padding: 0; /* Supprime le padding par défaut */
+    width: 100%; /* Prend toute la largeur */
+}
+
+/* Styles pour le contenu principal */
+main {
+    padding-top: 10px; /* Ajustez en fonction de la hauteur de votre header */
+    padding-bottom: 30px; /* Ajustez en fonction de la hauteur de votre footer */
+    min-height: calc(100vh - 30px); /* S'assurer que le contenu prend au moins toute la hauteur de la fenêtre moins le header et le footer */
+} 
+/* 
+finir ici le min height */

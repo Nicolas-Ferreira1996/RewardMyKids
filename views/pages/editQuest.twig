@@ -1,0 +1,70 @@
+{% extends "../layouts/base.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/editQuest.css">
+{% endblock %}
+
+{% block title %}
+    <title>{{title}}</title>
+{% endblock %}
+
+{% block main %}
+    <main>
+        <section class="edit-section">
+            <div class="form-container">
+                <h1>Modifier les quêtes de {{ child.firstname }}</h1>
+
+                <ul>
+                    {% for quest in child.quests %}
+                        {% if not quest.completed %}
+                            <li>
+                                <h3>Quête : {{ quest.questName }}</h3>
+
+                                <!-- Formulaire pour modifier la quête -->
+                                <form action="/updateQuest/{{ child._id }}/{{ quest._id }}" method="POST">
+                                    <div>
+                                        <label for="questName_{{ quest._id }}">Nom de la quête :</label>
+                                        <input type="text" id="questName_{{ quest._id }}" name="questName" value="{{ quest.questName }}" required>
+                                    </div>
+
+                                    <div>
+                                        <label for="questDescription_{{ quest._id }}">Description :</label>
+                                        <textarea id="questDescription_{{ quest._id }}" name="questDescription" required>{{ quest.questDescription }}</textarea>
+                                    </div>
+
+                                    <div>
+                                        <label for="questPoints_{{ quest._id }}">Points :</label>
+                                        <input type="number" id="questPoints_{{ quest._id }}" name="questPoints" value="{{ quest.questPoints }}" required>
+
+                                        <!-- Affichage du message d'erreur uniquement pour la quête concernée -->
+                                        {% if quest._id == errorQuestId %}
+                                            <div class="error-message">
+                                                {{ errorMessage }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <button type="submit">Modifier la Quête</button>
+                                </form>
+
+                                <!-- Formulaire pour supprimer la quête -->
+                                <form action="/deleteQuest/{{ child._id }}/{{ quest._id }}" method="POST">
+                                    <button type="submit" class="danger">Supprimer la Quête</button>
+                                </form>
+                            </li>
+                        {% else %}
+                            <!-- Affichage d'une information pour les quêtes complétées -->
+                            <li>
+                                <h3>Quête : {{ quest.questName }} - {{ quest.questPoints }} Points (Complétée)</h3>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <p>Aucune quête disponible.</p>
+                    {% endfor %}
+                </ul>
+
+                <a href="/guideDashboard" class="back-link">Retour au tableau de bord</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "../layouts/base.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/chooseProfile.css">
+{% endblock %}
+
+{% block title %}
+    <title>{{title}}</title>
+{% endblock %}
+
+{% block main %}
+<main class="choose-profile-main">
+    <section class="choose-profile-section">
+        <h1 class="choose-profile-title">Choisir un Profil</h1>
+
+        <h2>Nom de l'équipe: {{guide.teamName}}</h2>
+
+        <!-- Section pour le Guide -->
+        <div class="guide-container">
+            <h3 class="guide-title">Guide des quêtes</h3>
+            <p class="guide-name">{{ guide.name }}</p> <!-- Le nom du guide est affiché ici -->
+
+            <!-- Formulaire pour entrer le mot de passe du guide -->
+            <form action="/selectGuideProfile" method="POST">
+                <div>
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <!-- Affichage d'un message d'erreur si le mot de passe est incorrect -->
+                {% if error %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+                <!-- Bouton pour valider le mot de passe et accéder au tableau de bord du guide -->
+                <button type="submit">Accéder au tableau de bord du guide</button>
+            </form>
+        </div>
+
+        <!-- Profil Enfants -->
+        <h3>Enfants</h3>
+        <ul class="children-list">
+            {% for child in guide.childrenCollection %}
+                <li class="child-item">
+                    <a href="/selectProfile?role=child&childId={{ child._id }}">{{ child.firstname }}</a>
+                </li>
+            {% else %}
+                <li class="child-item">Aucun enfant disponible.</li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+{% endblock %}

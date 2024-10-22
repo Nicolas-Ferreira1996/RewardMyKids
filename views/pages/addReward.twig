@@ -1,0 +1,33 @@
+{% extends "../layouts/base.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/addReward.css">
+{% endblock %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block main %}
+    <main>
+        <section class="reward-section">
+            <div class="form-container">
+                <h1>Ajouter une Récompense pour {{ child.firstname }}</h1>
+                <form action="/saveReward/{{ child._id }}" method="post">
+                    <label for="rewardName">Nom de la Récompense :</label>
+                    <input type="text" id="rewardName" name="rewardName" required>
+
+                    <label for="rewardDescription">Description :</label>
+                    <textarea id="rewardDescription" name="rewardDescription" required></textarea>
+
+                    <label for="rewardCost">Coût en Points :</label>
+                    <input type="number" id="rewardCost" name="rewardCost" required min="1">
+
+                    <button type="submit">Ajouter la Récompense</button>
+                </form>
+
+                <a href="/guideDashboard" class="back-link">Retour au dashboard du guide</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

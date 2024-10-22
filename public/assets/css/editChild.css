@@ -1,0 +1,130 @@
+/* Reset général */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5; /* Couleur de fond appliquée sur toute la page */
+    color: #333;
+}
+
+/* Pour que le main prenne toute la hauteur disponible */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 0px); /* Assure que le main prend toute la page */
+    padding: 0;
+}
+
+/* Section contenant le formulaire */
+.edit-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Formulaire dans un rectangle avec un léger border-radius */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.85); /* Fond blanc légèrement transparent */
+    padding: 32px 16px;
+    border-radius: 10px; /* Bord arrondi */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    border: 2px solid #3498DB; /* Bordure bleue */
+}
+
+/* Titres et formulaire */
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: #3498DB; /* Couleur bleue */
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espace entre les champs */
+}
+
+label {
+    font-size: 1.1em;
+    color: #333;
+    text-align: left;
+}
+
+input {
+    padding: 12px;
+    border: 2px solid #3498DB; /* Bordure bleue */
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.85); /* Fond légèrement transparent */
+    color: #333;
+}
+
+/* Bouton de soumission */
+button[type="submit"] {
+    margin-top: 8px;
+    padding: 12px;
+    background-color: #2ECC71; /* Vert */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #27AE60; /* Couleur plus foncée au survol */
+}
+
+/* Bouton de suppression */
+button.delete-btn {
+    margin-top: 16px;
+    padding: 12px;
+    background-color: #E74C3C; /* Rouge */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.delete-btn:hover {
+    background-color: #C0392B; /* Rouge plus foncé au survol */
+}
+
+/* Lien de retour au dashboard */
+.back-link {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 15px;
+    background-color: #3498DB; /* Bleu */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+    background-color: #2980B9; /* Bleu plus foncé au survol */
+}
+
+/* Responsivité */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+}

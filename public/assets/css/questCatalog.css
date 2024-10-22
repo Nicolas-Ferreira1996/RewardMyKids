@@ -1,0 +1,112 @@
+/* Reset général */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5; /* Fond clair */
+    color: #333; /* Texte en noir */
+}
+
+/* Styles principaux */
+main.quest-catalog-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* S'assurer que le contenu occupe toute la hauteur de la fenêtre */
+    text-align: center;
+}
+
+section.quest-catalog-section {
+    background-color: rgba(255, 255, 255, 0.85); /* Légère transparence sur le fond */
+    padding: 40px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ombre pour un effet élégant */
+    border: 2px solid #3498DB; /* Bordure bleue */
+}
+
+/* Titre principal */
+h1.quest-catalog-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #3498DB; /* Titre bleu */
+}
+
+/* Liste des quêtes */
+ul.quest-list {
+    list-style: none; /* Supprimer les puces */
+    padding: 0; /* Supprimer le padding par défaut */
+    margin-top: 30px; /* Espacement au-dessus de la liste */
+    display: flex;
+    flex-direction: column; /* Alignement en colonne pour les éléments de la liste */
+    gap: 20px; /* Espacement entre les éléments de la liste */
+}
+
+/* Article pour chaque quête */
+article.quest-article {
+    background-color: #ECF0F1; /* Fond clair pour les articles */
+    border: 2px solid #3498DB; /* Bordure bleue */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 20px; /* Espacement interne */
+    transition: box-shadow 0.3s ease; /* Transition pour l'effet au survol */
+}
+
+/* Effet d'ombre sur le survol des articles */
+article.quest-article:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombre au survol */
+}
+
+/* Titre de la quête */
+h3.quest-title {
+    margin: 0 0 10px 0; /* Espacement en bas du titre */
+    font-size: 1.8em; /* Taille de la police pour le titre */
+    color: #3498DB; /* Couleur du texte du titre */
+}
+
+/* Description de la quête */
+p.quest-description {
+    margin: 0; /* Supprimer les marges par défaut */
+    font-size: 1.2em; /* Taille de la police pour la description */
+    color: #555; /* Couleur de la description */
+}
+
+/* Conteneur des boutons */
+.back-button {
+    text-align: center; /* Centrer le bouton */
+    margin-top: 30px; /* Espacement au-dessus du bouton */
+}
+
+/* Style des boutons */
+.btn {
+    padding: 10px 20px; /* Espacement interne du bouton */
+    background-color: #3498DB; 
+    color: white; /* Couleur du texte des boutons */
+    text-decoration: none; /* Supprimer le soulignement */
+    border-radius: 5px; /* Coins arrondis pour les boutons */
+    transition: background-color 0.3s ease; /* Transition pour l'effet au survol */
+}
+
+/* Effet au survol des boutons */
+.btn:hover {
+    background-color: #2980b9 /* Couleur légèrement plus foncée au survol */
+}
+
+/* Responsive Design pour les petits écrans */
+@media (max-width: 600px) {
+    section.quest-catalog-section {
+        width: 90%; /* Réduire la largeur de la section sur petits écrans */
+    }
+
+    .btn {
+        padding: 10px 15px; /* Ajuster l'espacement interne pour les petits écrans */
+        font-size: 0.6em; /* Réduire la taille de la police */
+        width: 100%; /* Rendre le bouton plein largeur sur petits écrans */
+    }
+}

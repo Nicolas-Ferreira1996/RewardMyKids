@@ -1,0 +1,47 @@
+{% extends "../layouts/base.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/rewardCatalog.css">
+{% endblock %}
+
+{% block title %}
+    <title>{{title}}</title>
+{% endblock %}
+
+{% block main %}
+    <main class="reward-catalog-main"> <!-- Classe principale pour le catalogue de récompenses -->
+        <section class="reward-catalog-section"> <!-- Classe de section pour le catalogue de récompenses -->
+            <h1 class="reward-catalog-title">Catalogue des Récompenses</h1> <!-- Titre principal pour le catalogue de récompenses -->
+
+            <ul class="reward-list"> <!-- Liste des récompenses -->
+                {% set hasAvailableRewards = false %} <!-- Variable pour vérifier s'il y a des récompenses non achetées -->
+
+                {% for reward in rewards %}
+                    {% if not reward.purchased %}
+                        <li class="reward-item"> <!-- Élément de la liste pour chaque récompense -->
+                            <article class="reward-article"> <!-- Article pour chaque récompense -->
+                                <h3 class="reward-title">{{ reward.rewardName }} - {{ reward.rewardCost }} points</h3> <!-- Titre de la récompense -->
+                                <p class="reward-description">{{ reward.rewardDescription }}</p> <!-- Description de la récompense -->
+                            </article>
+                        </li>
+                        {% set hasAvailableRewards = true %} <!-- Marquer qu'il y a une récompense disponible -->
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Si aucune récompense non achetée, afficher un message -->
+                {% if not hasAvailableRewards %}
+                    <li class="reward-item">
+                        <article class="reward-article">
+                            <p class="reward-description">Aucune récompense disponible pour l'instant.</p>
+                        </article>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <!-- Ajout d'un bouton de retour au tableau de bord -->
+            <div class="back-button"> <!-- Conteneur pour le bouton de retour -->
+                <a href="/childDashboard/{{ child._id }}" class="btn">Retour au tableau de bord</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

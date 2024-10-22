@@ -1,0 +1,75 @@
+header {
+    background-color: #3498DB; /* Fond bleu */
+    color: #FFFFFF;            /* Texte blanc */
+    padding: 10px 20px;        /* Espacement autour du contenu */
+    font-family: Arial, sans-serif; /* Police */
+    width: 100%;               /* Largeur complète */
+    top: 0;                    /* Fixé en haut */
+    left: 0;                   /* Aligné à gauche */
+    right: 0;                  /* Aligné à droite */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    display: flex;             /* Utilise flexbox pour la disposition */
+    justify-content: space-between; /* Espace entre le logo et la navigation */
+    align-items: center;       /* Centre verticalement le contenu */
+    box-sizing: border-box;    /* Inclut le padding dans la hauteur */
+    z-index: 1000;             /* Assure que le header est au-dessus des autres éléments */
+}
+
+header div img {
+    height: 40px;              /* Taille du logo */
+    width: auto;               /* Conserve le ratio du logo */
+    padding: 0;                /* Supprime le padding sur l'image */
+}
+
+header nav {
+    display: flex;             /* Flexbox pour la navigation */
+}
+
+header ul {
+    list-style: none;          /* Suppression des puces de liste */
+    padding: 0;                /* Suppression du padding */
+    margin: 0;                 /* Suppression des marges */
+    display: flex;             /* Disposition en flexbox */
+    gap: 20px;                 /* Espacement entre les liens */
+}
+
+header li {
+    display: inline;           /* Disposition en ligne des éléments */
+}
+
+header a {
+    text-decoration: none;     /* Suppression du soulignement des liens */
+    color: #FFFFFF;            /* Couleur des liens */
+    font-size: 16px;           /* Taille de police des liens */
+    padding: 5px 10px;         /* Espacement intérieur des liens */
+    border-radius: 4px;        /* Bordure arrondie des liens */
+    transition: background-color 0.3s; /* Transition douce pour le fond */
+}
+
+header a:hover {
+    background-color: #1362b6; /* Couleur de fond au survol */
+    color: #FFFFFF;            /* Couleur du texte au survol */
+}
+
+/* Responsive Design pour les petits écrans */
+@media (max-width: 460px) {
+    header {
+        flex-direction: column;  /* Passe en colonne pour les petits écrans */
+        align-items: center;     /* Centre horizontalement */
+        text-align: center;      /* Centre le texte */
+    }
+
+    header nav {
+        width: 100%;             /* Prend toute la largeur */
+        justify-content: center;  /* Centre les éléments horizontalement */
+    }
+
+    header ul {
+        flex-direction: column;   /* Les éléments de la liste sont en colonne */
+        width: 100%;              /* Prend toute la largeur */
+    }
+
+    header li {
+        margin-bottom: 10px;      /* Ajoute de l'espace entre les éléments de la liste */
+    }
+}

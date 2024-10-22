@@ -1,0 +1,65 @@
+{% extends "../layouts/base.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/editReward.css">
+{% endblock %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block main %}
+    <main>
+        <section class="edit-section">
+            <div class="form-container">
+                <h1>Modifier les Récompenses de {{ child.firstname }}</h1>
+
+                <!-- Liste des récompenses de l'enfant -->
+                <ul>
+                    {% for reward in child.rewards %}
+                        {% if not reward.purchased %}
+                            <li>
+                                <h3>Récompense : {{ reward.rewardName }}</h3>
+
+                                <!-- Formulaire pour modifier la récompense -->
+                                <form action="/updateReward/{{ child._id }}/{{ reward._id }}" method="POST">
+                                    <div>
+                                        <label for="rewardName_{{ reward._id }}">Nom de la récompense :</label>
+                                        <input type="text" id="rewardName_{{ reward._id }}" name="rewardName" value="{{ reward.rewardName }}" required>
+                                    </div>
+
+                                    <div>
+                                        <label for="rewardDescription_{{ reward._id }}">Description :</label>
+                                        <textarea id="rewardDescription_{{ reward._id }}" name="rewardDescription" required>{{ reward.rewardDescription }}</textarea>
+                                    </div>
+
+                                    <div>
+                                        <label for="rewardCost_{{ reward._id }}">Points :</label>
+                                        <input type="number" id="rewardCost_{{ reward._id }}" name="rewardCost" value="{{ reward.rewardCost }}" required>
+                                    </div>
+
+                                    <button type="submit">Modifier la Récompense</button>
+                                </form>
+
+                                <!-- Formulaire pour supprimer la récompense -->
+                                <form action="/deleteReward/{{ child._id }}/{{ reward._id }}" method="POST">
+                                    <button type="submit" class="danger">Supprimer la Récompense</button>
+                                </form>
+                            </li>
+                        {% else %}
+                            <!-- Affichage d'une information pour les récompenses achetées -->
+                            <li>
+                                <h3>Récompense : {{ reward.rewardName }} - {{ reward.rewardCost }} Points (Achetée)</h3>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <p>Aucune récompense disponible.</p>
+                    {% endfor %}
+                </ul>
+
+                <!-- Lien de retour au tableau de bord -->
+                <a href="/guideDashboard" class="back-link">Retour au tableau de bord</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

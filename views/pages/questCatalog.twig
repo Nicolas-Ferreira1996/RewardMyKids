@@ -1,0 +1,47 @@
+{% extends "../layouts/base.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/questCatalog.css">
+{% endblock %}
+
+{% block title %}
+    <title>{{title}}</title>
+{% endblock %}
+
+{% block main %}
+    <main class="quest-catalog-main">
+        <section class="quest-catalog-section">
+            <h1 class="quest-catalog-title">Catalogue des Quêtes pour {{ child.firstname }}</h1>
+
+            {% set hasIncompleteQuests = false %} <!-- Variable pour vérifier s'il y a des quêtes non complétées -->
+
+            <ul class="quest-list"> <!-- Ajout d'une classe à la liste -->
+                {% for quest in quests %}
+                    {% if not quest.completed %}
+                        <li class="quest-item"> <!-- Ajout d'une classe à chaque élément de la liste -->
+                            <article class="quest-article"> <!-- Ajout d'une classe à l'article -->
+                                    <h3 class="quest-title">{{ quest.questName }} - {{ quest.questPoints }} points</h3>
+                                <p class="quest-description">{{ quest.questDescription }}</p> <!-- Ajout d'une classe pour la description -->
+                            </article>
+                        </li>
+                        {% set hasIncompleteQuests = true %} <!-- Marquer qu'il y a une quête disponible -->
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Si aucune quête non complétée, afficher un message -->
+                {% if not hasIncompleteQuests %}
+                    <li class="quest-item">
+                        <article class="quest-article">
+                            <p class="quest-description">Aucune quête disponible pour l'instant.</p>
+                        </article>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <!-- Ajout d'un bouton de retour au tableau de bord -->
+            <div class="back-button">
+                <a href="/childDashboard/{{ child._id }}" class="btn">Retour au tableau de bord</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

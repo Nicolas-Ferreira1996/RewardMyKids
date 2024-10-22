@@ -1,0 +1,208 @@
+/* Reset général */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    color: #333;
+}
+
+/* Styles principaux */
+.dashboard-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.dashboard-section {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #3498DB;
+}
+
+/* Titres */
+.dashboard-title, .child-list-title, .quests-title, .rewards-title {
+    color: #3498DB;
+    margin-bottom: 20px;
+}
+
+.dashboard-title {
+    font-size: 2.5em;
+}
+
+.child-list-title {
+    font-size: 2em;
+}
+
+/* Listes */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.child-item {
+    background-color: #ECF0F1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #3498DB;
+}
+
+.child-profile {
+    text-align: left;
+}
+
+.child-name {
+    font-size: 1.5em;
+    color: #3498DB;
+    margin-bottom: 10px;
+}
+
+.child-points, .child-behavior {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Formulaires */
+form.behavior-form, form.password-form {
+    margin-top: 10px;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 2px solid #3498DB;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #333;
+}
+
+/* Boutons */
+button[type="submit"]:not(.increase-btn, .decrease-btn) {
+    background-color: #3498DB;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:not(.increase-btn, .decrease-btn):hover {
+    background-color: #2980b9;
+}
+
+/* Boutons Augmenter et Diminuer */
+.increase-btn {
+    background-color: #2ECC71; /* Vert pour le bouton */
+    color: white; /* Texte en blanc */
+    padding: 8px 16px; /* Rembourrage */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 1em; /* Taille de la police */
+    cursor: pointer; /* Curseur en main */
+    transition: background-color 0.3s ease; /* Animation sur le survol */
+    margin: 5px; /* Espace entre les boutons */
+}
+
+.increase-btn:hover {
+    background-color: #27ae60; /* Couleur légèrement plus foncée au survol */
+}
+
+.decrease-btn {
+    background-color: #E74C3C; /* Rouge */
+    color: white; /* Texte en blanc */
+    padding: 8px 16px; /* Rembourrage */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 1em; /* Taille de la police */
+    cursor: pointer; /* Curseur en main */
+    transition: background-color 0.3s ease; /* Animation sur le survol */
+    margin: 5px; /* Espace entre les boutons */
+}
+
+.decrease-btn:hover {
+    background-color: #C0392B;
+}
+
+/* Messages d'erreur */
+.error-message {
+    color: #e74c3c;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Historique des quêtes et récompenses */
+.quests-section, .rewards-section {
+    margin-top: 20px;
+}
+
+.completed-quests-list, .incomplete-quests-list, .purchased-rewards-list, .available-rewards-list {
+    margin-top: 10px;
+}
+
+.completed-quest, .incomplete-quest, .purchased-reward, .available-reward {
+    padding: 10px;
+    border: 1px solid #3498DB;
+    border-radius: 5px;
+    background-color: #D0D3D4;
+    margin-bottom: 10px;
+}
+
+/* Boutons d'ajout et d'édition */
+.add-child-container, .child-options-nav ul {
+    margin-bottom: 20px;
+}
+
+.add-child-btn, .edit-child-btn, .add-quest-btn, .edit-quest-btn, .add-reward-btn, .edit-reward-btn {
+    display: inline-block;
+    background-color: #3498DB;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.add-child-btn:hover, .edit-child-btn:hover, .add-quest-btn:hover, .edit-quest-btn:hover, .add-reward-btn:hover, .edit-reward-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Réglages de la classe .child-header pour aligner le nom et le bouton Modifier */
+.child-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Styles pour les boutons Ajouter et Modifier sous les sections */
+.quest-buttons, .reward-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.no-quests-message, .no-rewards-message, .no-children-message {
+    font-size: 1.1em;
+    margin-top: 10px;
+    color: #7F8C8D;
+}

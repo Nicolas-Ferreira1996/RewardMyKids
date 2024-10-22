@@ -1,0 +1,119 @@
+/* Reset général */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5; /* Couleur de fond appliquée sur toute la page */
+    color: #333;
+}
+
+/* Pour que le main prenne toute la hauteur disponible */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 0px); /* Assure que le main prend toute la page */
+    padding: 0;
+}
+
+/* Section contenant le formulaire */
+.quest-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Formulaire dans un rectangle avec un léger border-radius */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.85); /* Fond blanc légèrement transparent */
+    padding: 32px 16px; /* Espacement intérieur */
+    border-radius: 10px; /* Bord arrondi */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    max-width: 500px; /* Largeur maximale */
+    width: 100%; /* Prend toute la largeur */
+    text-align: center; /* Centre le texte */
+    border: 2px solid #3498DB; /* Bordure bleue */
+}
+
+/* Titres et formulaire */
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: #3498DB; /* Couleur bleue */
+    margin-bottom: 20px; /* Espace en dessous du titre */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Alignement en colonne */
+    gap: 8px; /* Espace entre les champs */
+}
+
+label {
+    font-size: 1.1em;
+    color: #333; /* Couleur du texte */
+    text-align: left; /* Alignement à gauche */
+}
+
+input[type="text"], input[type="number"], textarea {
+    padding: 12px; /* Espacement intérieur */
+    border: 2px solid #3498DB; /* Bordure bleue */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 1em; /* Taille de police */
+    width: 100%; /* Prend toute la largeur */
+    background-color: rgba(255, 255, 255, 0.85); /* Fond légèrement transparent */
+    color: #333; /* Couleur du texte */
+}
+
+/* Bouton d'ajout de quête */
+button[type="submit"] {
+    margin-top: 8px; /* Espace au-dessus du bouton */
+    padding: 12px; /* Espacement intérieur */
+    background-color: #2ECC71; /* Vert */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 1.2em; /* Taille de police */
+    cursor: pointer; /* Curseur en main */
+    transition: background-color 0.3s ease; /* Transition douce au survol */
+}
+
+button[type="submit"]:hover {
+    background-color: #27AE60; /* Couleur plus foncée au survol */
+}
+
+/* Styles pour le lien de retour */
+.back-link {
+    display: inline-block; /* Permet de styliser le lien comme un bouton */
+    margin-top: 16px; /* Espace au-dessus du lien */
+    padding: 10px 15px; /* Espacement intérieur */
+    background-color: #3498DB; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    text-decoration: none; /* Supprime le soulignement */
+    border-radius: 5px; /* Coins arrondis */
+    transition: background-color 0.3s ease; /* Effet de transition au survol */
+}
+
+.back-link:hover {
+    background-color: #2980B9; /* Couleur plus foncée au survol */
+}
+
+/* Messages d'erreur */
+.error-message {
+    color: #E74C3C; /* Rouge vif pour les messages d'erreur */
+    font-size: 0.9em; /* Taille du texte */
+}
+
+/* Responsivité */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px; /* Espacement intérieur réduit */
+        max-width: 90%; /* Largeur maximale */
+    }
+}

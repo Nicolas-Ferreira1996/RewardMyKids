@@ -1,0 +1,77 @@
+/* Reset général */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    color: #333;
+}
+
+/* Styles principaux */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #3498DB;
+}
+
+/* Titre principal */
+h1 {
+    color: #3498DB;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Informations de l'enfant */
+.child-info p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+/* Mettre en gras les textes des points et comportements */
+.points-actuels, .points-comportement {
+    font-weight: bold;
+}
+
+/* Boutons du catalogue */
+.catalog-buttons {
+    margin-top: 20px;
+}
+
+.catalog-buttons .btn, .back-button .btn {
+    background-color: #3498DB;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin: 10px;
+}
+
+.catalog-buttons .btn:hover {
+    background-color: #2980b9;
+}
+
+.back-button .btn:hover{
+    background-color: #2980b9;
+}
+
