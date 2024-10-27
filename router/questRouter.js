@@ -42,8 +42,6 @@ questRouter.post('/saveQuest/:childId', authguard, async (req, res) => {
             return res.redirect(`/addQuest/${childId}?error=Le nombre de points doit être compris entre 1 et 100`);
         }
 
-        console.log(req.body);
-
         child.quests.push({
             questName: req.body.questName,
             questDescription: req.body.questDescription,
