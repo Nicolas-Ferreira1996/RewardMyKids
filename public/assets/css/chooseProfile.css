@@ -1,65 +1,46 @@
-/* Reset général */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background-color: #F5F5F5; /* Fond clair demandé */
-    color: #333; /* Texte en noir pour un bon contraste */
-}
-
-/* Styles principaux */
-main.choose-profile-main {
+main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* S'assurer que le contenu occupe toute la hauteur de la fenêtre */
     text-align: center;
 }
 
-section.choose-profile-section {
-    background-color: rgba(255, 255, 255, 0.85); /* Légère transparence sur le fond pour l'effet de carte */
+section {
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 40px;
     border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Petite ombre pour un effet élégant */
-    border: 2px solid #3498DB; /* Bordure bleue */
+    margin: 10px 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #3498DB;
 }
 
-/* Titre principal */
-h1.choose-profile-title {
+h1 {
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #3498DB; /* Titre bleu */
+    color: #3498DB;
 }
 
-/* Ajoute un espacement entre le nom de l'équipe et l'encadré du choix de profil du guide */
+
 h2 {
-    margin-bottom: 20px; /* Ajuste l'espacement selon tes préférences */
+    margin-bottom: 20px;
 }
 
-/* Section du guide avec un cadre similaire aux enfants */
+
 div.guide-container {
-    background-color: #ECF0F1; /* Fond clair pour le guide */
-    border: 2px solid #3498DB; /* Bordure bleue */
-    border-radius: 10px; /* Légère courbure des angles */
+    background-color: #ECF0F1;
+    border: 2px solid #3498DB;
+    border-radius: 10px;
     padding: 20px;
     margin-bottom: 30px;
     text-align: center;
-    flex: 1 1 calc(200% - 20px); /* Guide deux fois plus large que les enfants */
 }
 
-/* Guide title + enfant title */
+
 h3 {
     font-size: 1.8em;
     margin-bottom: 10px;
-    color: #3498DB; /* Sous-titre en bleu */
+    color: #3498DB;
 }
 
 p.guide-name {
@@ -67,7 +48,7 @@ p.guide-name {
     margin-bottom: 15px;
 }
 
-/* Input mot de passe */
+
 input[type="password"] {
     width: 100%;
     padding: 10px;
@@ -75,20 +56,20 @@ input[type="password"] {
     margin-bottom: 20px;
     font-size: 1em;
     border-radius: 5px;
-    border: 2px solid #3498DB; /* Bordure bleue */
-    background-color: rgba(255, 255, 255, 0.85); /* Légère transparence sur le fond pour l'effet de carte */
-    color: #333; /* Texte en noir */
+    border: 2px solid #3498DB;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #333;
 }
 
-/* Erreur de mot de passe */
-div.error-message {
-    color: #e74c3c; /* Rouge vif pour les messages d'erreur */
+
+.error-message {
+    color: #e74c3c;
     margin-bottom: 20px;
 }
 
-/* Bouton de validation */
+
 button[type="submit"] {
-    background-color: #2ECC71; /* Vert pour le bouton */
+    background-color: #2ECC71;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -99,64 +80,56 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #27ae60; /* Couleur légèrement plus foncée au survol */
+    background-color: #27ae60;
 }
 
-/* Liste des enfants avec Flexbox */
-ul.children-list {
+
+.children-list {
     list-style: none;
     padding: 0;
     margin-top: 30px;
     display: flex;
-    flex-wrap: wrap; /* Les éléments passent à la ligne si nécessaire */
-    justify-content: center; /* Centrer les enfants dans le conteneur */
-    gap: 20px; /* Espacement entre les cases des enfants */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
-li.child-item {
-    flex: 1 1 calc(33.333% - 20px); /* Les enfants prennent 1/3 de la ligne avec un espacement */
-    max-width: 150px; /* Largeur maximum */
+.child-item {
+    max-width: 150px;
 }
 
-/* Liens vers les profils des enfants */
-li.child-item a {
-    display: flex; /* Utilisation de flex pour centrer le contenu */
-    align-items: center; /* Centre verticalement le contenu */
-    justify-content: center; /* Centre horizontalement le contenu */
-    background-color: #ECF0F1; /* Fond clair pour les profils */
-    color: #333; /* Texte en noir car sinon ca reste en couleur lien (bleu puis violet) */
+
+.child-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ECF0F1;
+    color: #333;
     padding: 20px;
-    border-radius: 10px; /* Courbure des angles pour le cadre des enfants */
+    border-radius: 10px;
     text-align: center;
     font-size: 1.5em;
     text-decoration: none;
     width: 150px;
     height: 150px;
-    border: 2px solid #3498DB; /* Bordure bleue */
+    border: 2px solid #3498DB;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-li.child-item a:hover {
-    background-color: #D0D3D4; /* Fond légèrement plus foncé au survol */
-    transform: scale(1.1); /* Effet zoom au survol */
+.child-item a:hover {
+    background-color: #D0D3D4;
+    transform: scale(1.1);
 }
 
-/* Responsive Design pour les petits écrans */
+
 @media (max-width: 600px) {
-    ul.children-list {
-        flex-direction: row; /* Maintient la direction en ligne */
+    .children-list {
+        flex-direction: row;
         justify-content: center;
     }
 
-    li.child-item {
-        flex: 1 1 calc(33.333% - 10px); /* 3 enfants par ligne sur petits écrans */
-        max-width: 150px; /* Largeur maximum */
-    }
-
-
-
-    section.choose-profile-section {
-        width: 90%; /* Réduire la largeur de la section sur petits écrans */
+    section {
+        margin: 10px 0px;
+        width: 90%;
     }
 }
-

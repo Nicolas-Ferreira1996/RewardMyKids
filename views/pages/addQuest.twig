@@ -1,45 +1,42 @@
 {% extends "../layouts/base.twig" %}
 
 {% block style %}
-    <link rel="stylesheet" href="/assets/css/addQuest.css">
+	<link rel="stylesheet" href="/assets/css/addQuest.css">
 {% endblock %}
 
 {% block title %}
-    <title>{{ title }}</title>
+	<title>{{ title }}</title>
 {% endblock %}
 
 {% block main %}
-    <main>
-        <section class="quest-section">
-            <div class="form-container"> <!-- Conteneur pour le formulaire -->
-                <h1>Ajouter une Quête pour {{ child.firstname }}</h1>
+	<main>
+		<section class="form-container">
+			<h1>Ajouter une Quête pour
+				{{ child.firstname }}</h1>
 
-                <!-- Formulaire pour ajouter une quête -->
-                <form action="/saveQuest/{{ child._id }}" method="post">
-                    <div>
-                        <label for="questName">Nom de la Quête</label>
-                        <input type="text" id="questName" name="questName" required>
-                    </div>
-                    <div>
-                        <label for="questDescription">Description de la Quête</label>
-                        <textarea id="questDescription" name="questDescription" required></textarea>
-                    </div>
-                    <div>
-                        <label for="questPoints">Points de la Quête (entre 1 et 100)</label>
-                        <input type="number" id="questPoints" name="questPoints" min="1" max="100" required>
-                        <!-- Affichage du message d'erreur s'il existe -->
-                        {% if errorMessage %}
-                            <div class="error-message">
-                                {{ errorMessage }}
-                            </div>
-                        {% endif %}
-                    </div>
-                    <button type="submit">Ajouter la Quête</button>
-                </form>
-
-                <!-- Lien de retour -->
-                <a href="/guideDashboard" class="back-link">Retour au dashboard du guide</a>
-            </div> <!-- Fin du conteneur -->
-        </section>
-    </main>
+			<form action="/saveQuest/{{ child._id }}" method="post">
+				<div>
+					<label for="questName">Nom de la Quête</label>
+					<input type="text" id="questName" name="questName" required>
+				</div>
+				<div>
+					<label for="questDescription">Description de la Quête</label>
+					<textarea id="questDescription" name="questDescription" required></textarea>
+				</div>
+				<div>
+					<label for="questPoints">Points de la Quête (entre 1 et 100)</label>
+					<input type="number" id="questPoints" name="questPoints" min="1" max="100" required>
+					{% if errorMessage %}
+						<div class="error-message">
+							{{ errorMessage }}
+						</div>
+					{% endif %}
+				</div>
+				<button type="submit">Ajouter la Quête</button>
+			</form>
+			<div class="back-button">
+				<a href="/guideDashboard" class="btn">Retour au dashboard du guide</a>
+			</div>
+		</section>
+	</main>
 {% endblock %}

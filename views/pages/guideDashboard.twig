@@ -1,155 +1,157 @@
 {% extends "../layouts/base.twig" %}
 
 {% block style %}
-    <link rel="stylesheet" href="/assets/css/guideDashboard.css">
+	<link rel="stylesheet" href="/assets/css/guideDashboard.css">
 {% endblock %}
 
 {% block title %}
-    <title>{{title}}</title>
+	<title>{{title}}</title>
 {% endblock %}
 
 {% block main %}
-    <main class="dashboard-main">
-        <section class="dashboard-section">
-            <h1 class="dashboard-title">Dashboard Guide des quêtes</h1>
+	<main class="dashboard-main">
+		<section class="dashboard-section">
+			<h1>Dashboard Guide des quêtes</h1>
 
-            <div class="add-child-container">
-                <a href="/addChild" class="add-child-btn">Ajouter un enfant</a>
-            </div>
-            
-            <h2 class="child-list-title">Liste des enfants</h2>
-            <ul class="children-list">
-                {% for child in guide.childrenCollection %}
-                    <li class="child-item">
-                        <article class="child-profile">
-                            <div class="child-header">
-                                <h3 class="child-name">{{ child.firstname }}</h3>
-                                <a href="/editChild/{{ child._id }}" class="edit-child-btn">Modifier l'enfant</a>
-                            </div>
-                            <p class="child-points">Points actuels : {{ child.points }}</p>
-                            <p class="child-behavior">Comportement : {{ child.comportement }}</p>
+			<div class="add-child-container">
+				<a href="/addChild" class="a-to-btn">Ajouter un enfant</a>
+			</div>
 
-                            <!-- Formulaire pour modifier les points de comportement -->
-                            <form action="/updatecomportement/{{ child._id }}" method="post" class="behavior-form">
-                                <button name="action" value="increase" type="submit" class="increase-btn" aria-label="Augmenter les points de comportement">+</button>
-                                <button name="action" value="decrease" type="submit" class="decrease-btn" aria-label="Diminuer les points de comportement">-</button>
-                            </form>
+			<h2>Liste des enfants</h2>
+			<ul>
+				{% for child in guide.childrenCollection %}
+					<li class="child-item">
+						<article class="child-profile">
+							<div class="child-header">
+								<h3>{{ child.firstname }}</h3>
+								<a href="/editChild/{{ child._id }}" class="a-to-btn">Modifier l'enfant</a>
+							</div>
+							<p class="child-points">Points actuels :
+								{{ child.points }}</p>
+							<p class="child-behavior">Comportement :
+								{{ child.comportement }}</p>
 
-                            <!-- Validation des points avec mot de passe -->
-                            <form action="/updatecomportement/{{ child._id }}" method="post" class="password-form">
-                                <input type="hidden" name="validate" value="true">
-                                <label for="password-{{ child._id }}" class="password-label">Mot de passe :</label>
-                                <input type="password" name="password" id="password-{{ child._id }}" required class="password-input">
-                                <button type="submit" class="validate-btn">Valider les points</button>
-                            </form>
 
-                            <!-- Historique des quêtes complétées -->
-                            <section class="quests-section">
-                                <h4 class="quests-title">Historique des quêtes complétées :</h4>
-                                <ul class="completed-quests-list">
-                                    {% set hasCompletedQuests = false %}
-                                    {% for quest in child.quests %}
-                                        {% if quest.completed %}
-                                            <li class="completed-quest">
-                                                <p class="quest-name">{{ quest.questName }} - {{ quest.questPoints }} points</p>
-                                                <p class="quest-description">{{ quest.questDescription }}</p>
-                                            </li>
-                                            {% set hasCompletedQuests = true %}
-                                        {% endif %}
-                                    {% endfor %}
-                                    {% if not hasCompletedQuests %}
-                                        <p class="no-quests-message">Aucune quête complétée pour l'instant.</p>
-                                    {% endif %}
-                                </ul>
-                            </section>
+							<form action="/updatecomportement/{{ child._id }}" method="post" class="behavior-form">
+								<button name="action" value="increase" type="submit" class="increase-btn" aria-label="Augmenter les points de comportement">+</button>
+								<button name="action" value="decrease" type="submit" class="decrease-btn" aria-label="Diminuer les points de comportement">-</button>
+								<button name="action" value="validate" type="submit" class="validate-btn">Valider les points</button>
+							</form>
 
-                            <!-- Quêtes à compléter -->
-                            <section class="quests-section">
-                                <h4 class="quests-title">Quêtes à compléter :</h4>
-                                <ul class="incomplete-quests-list">
-                                    {% set hasIncompleteQuests = false %}
-                                    {% for quest in child.quests %}
-                                        {% if not quest.completed %}
-                                            <li class="incomplete-quest">
-                                                <p class="quest-name">{{ quest.questName }} - {{ quest.questPoints }} points</p>
-                                                <p class="quest-description">{{ quest.questDescription }}</p>
-                                                <form action="/completeQuest/{{ child._id }}/{{ quest._id }}" method="post" class="password-form">
-                                                    <label for="quest-password-{{ quest._id }}" class="password-label">Mot de passe :</label>
-                                                    <input type="password" name="password" id="quest-password-{{ quest._id }}" required class="password-input">
-                                                    <button type="submit" class="complete-quest-btn">Valider la Quête</button>
-                                                </form>
-                                            </li>
-                                            {% set hasIncompleteQuests = true %}
-                                        {% endif %}
-                                    {% endfor %}
-                                    {% if not hasIncompleteQuests %}
-                                        <p class="no-quests-message">Aucune quête à compléter pour l'instant.</p>
-                                    {% endif %}
-                                </ul>
-                                <!-- Boutons Ajouter et Modifier Quête -->
-                                <div class="quest-buttons">
-                                    <a href="/addQuest/{{ child._id }}" class="add-quest-btn">Ajouter une Quête</a>
-                                    <a href="/editQuest/{{ child._id }}" class="edit-quest-btn">Modifier une Quête</a>
-                                </div>
-                            </section>
+							<section class="quests-section">
+								<h4>Historique des quêtes complétées :</h4>
+								<ul>
+									{% set hasCompletedQuests = false %}
+									{% for quest in child.quests %}
+										{% if quest.completed %}
+											<li class="completed-quest">
+												<p>{{ quest.questName }}
+													-
+													{{ quest.questPoints }}
+													points</p>
+												<p>{{ quest.questDescription }}</p>
+											</li>
+											{% set hasCompletedQuests = true %}
+										{% endif %}
+									{% endfor %}
+									{% if not hasCompletedQuests %}
+										<p class="empty-message">Aucune quête complétée pour l'instant.</p>
+									{% endif %}
+								</ul>
+							</section>
 
-                            <!-- Historique des récompenses achetées -->
-                            <section class="rewards-section">
-                                <h4 class="rewards-title">Historique des récompenses achetées :</h4>
-                                <ul class="purchased-rewards-list">
-                                    {% set hasPurchasedRewards = false %}
-                                    {% for reward in child.rewards %}
-                                        {% if reward.purchased %}
-                                            <li class="purchased-reward">
-                                                <p class="reward-name">{{ reward.rewardName }} - {{ reward.rewardDescription }} - {{ reward.rewardCost }} points</p>
-                                            </li>
-                                            {% set hasPurchasedRewards = true %}
-                                        {% endif %}
-                                    {% endfor %}
-                                    {% if not hasPurchasedRewards %}
-                                        <p class="no-rewards-message">Aucune récompense achetée pour l'instant.</p>
-                                    {% endif %}
-                                </ul>
-                            </section>
+							<section class="quests-section">
+								<h4>Quêtes à compléter :</h4>
+								<ul>
+									{% set hasIncompleteQuests = false %}
+									{% for quest in child.quests %}
+										{% if not quest.completed %}
+											<li class="incomplete-quest">
+												<p>{{ quest.questName }}
+													-
+													{{ quest.questPoints }}
+													points</p>
+												<p>{{ quest.questDescription }}</p>
 
-                            <!-- Récompenses à acheter -->
-                            <section class="rewards-section">
-                                <h4 class="rewards-title">Récompenses à acheter :</h4>
-                                <ul class="available-rewards-list">
-                                    {% set hasAvailableRewards = false %}
-                                    {% for reward in child.rewards %}
-                                        {% if not reward.purchased %}
-                                            <li class="available-reward">
-                                                <p class="reward-name">{{ reward.rewardName }} - {{ reward.rewardDescription }} - {{ reward.rewardCost }} points</p>
-                                                {% if (reward._id == rewardId and error == 'pointsInsuffisants') %}
-                                                    <p class="error-message">L'enfant n'a pas assez de points pour acheter cette récompense.</p>
-                                                {% endif %}
-                                                <form action="/purchaseReward/{{ child._id }}/{{ reward._id }}" method="post" class="password-form">
-                                                    <label for="reward-password-{{ reward._id }}" class="password-label">Mot de passe :</label>
-                                                    <input type="password" name="password" id="reward-password-{{ reward._id }}" required class="password-input">
-                                                    <button type="submit" class="purchase-reward-btn">Acheter la Récompense</button>
-                                                </form>
-                                            </li>
-                                            {% set hasAvailableRewards = true %}
-                                        {% endif %}
-                                    {% endfor %}
-                                    {% if not hasAvailableRewards %}
-                                        <p class="no-rewards-message">Aucune récompense à acheter pour l'instant.</p>
-                                    {% endif %}
-                                </ul>
-                                <!-- Boutons Ajouter et Modifier Récompense -->
-                                <div class="reward-buttons">
-                                    <a href="/addReward/{{ child._id }}" class="add-reward-btn">Ajouter une Récompense</a>
-                                    <a href="/editReward/{{ child._id }}" class="edit-reward-btn">Modifier une Récompense</a>
-                                </div>
-                            </section>
+												<form action="/completeQuest/{{ child._id }}/{{ quest._id }}" method="post">
+													<button type="submit" class="complete-quest-btn">Valider la Quête</button>
+												</form>
+											</li>
+											{% set hasIncompleteQuests = true %}
+										{% endif %}
+									{% endfor %}
+									{% if not hasIncompleteQuests %}
+										<p class="empty-message">Aucune quête à compléter pour l'instant.</p>
+									{% endif %}
+								</ul>
+								<div class="quest-buttons">
+									<a href="/addQuest/{{ child._id }}" class="a-to-btn">Ajouter une Quête</a>
+									<a href="/editQuest/{{ child._id }}" class="a-to-btn">Modifier une Quête</a>
+								</div>
+							</section>
 
-                        </article>
-                    </li>
-                {% else %}
-                    <p class="no-children-message">Il n'y a pas encore d'enfants dans cette équipe.</p>
-                {% endfor %}
-            </ul>
-        </section>
-    </main>
+							<section class="rewards-section">
+								<h4>Historique des récompenses achetées :</h4>
+								<ul>
+									{% set hasPurchasedRewards = false %}
+									{% for reward in child.rewards %}
+										{% if reward.purchased %}
+											<li class="purchased-reward">
+												<p>{{ reward.rewardName }}
+													-
+													{{ reward.rewardCost }}
+													points</p>
+												<p>{{ reward.rewardDescription }}</p>
+											</li>
+											{% set hasPurchasedRewards = true %}
+										{% endif %}
+									{% endfor %}
+									{% if not hasPurchasedRewards %}
+										<p class="empty-message">Aucune récompense achetée pour l'instant.</p>
+									{% endif %}
+								</ul>
+							</section>
+
+							<section class="rewards-section">
+								<h4>Récompenses à acheter :</h4>
+								<ul>
+									{% set hasAvailableRewards = false %}
+									{% for reward in child.rewards %}
+										{% if not reward.purchased %}
+											<li class="available-reward">
+												<p>{{ reward.rewardName }}
+													-
+													{{ reward.rewardCost }}
+													points</p>
+												<p>{{ reward.rewardDescription }}</p>
+												{% if (reward._id == rewardId and error == 'pointsInsuffisants') %}
+													<p class="error-message">L'enfant n'a pas assez de points pour acheter cette récompense.</p>
+												{% endif %}
+												<form action="/purchaseReward/{{ child._id }}/{{ reward._id }}" method="post" class="purchase-reward-form">
+													<button type="submit" class="purchase-reward-btn">Acheter la Récompense</button>
+												</form>
+
+											</li>
+											{% set hasAvailableRewards = true %}
+										{% endif %}
+									{% endfor %}
+									{% if not hasAvailableRewards %}
+										<p class="empty-message">Aucune récompense à acheter pour l'instant.</p>
+									{% endif %}
+								</ul>
+
+								<div class="reward-buttons">
+									<a href="/addReward/{{ child._id }}" class="a-to-btn">Ajouter une Récompense</a>
+									<a href="/editReward/{{ child._id }}" class="a-to-btn">Modifier une Récompense</a>
+								</div>
+							</section>
+
+						</article>
+					</li>
+				{% else %}
+					<p class="empty-message">Il n'y a pas encore d'enfants dans cette équipe.</p>
+				{% endfor %}
+			</ul>
+		</section>
+	</main>
 {% endblock %}

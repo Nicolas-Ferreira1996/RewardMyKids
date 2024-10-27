@@ -6,7 +6,7 @@ const authguard = async (req, res, next) => {
         if (req.session.guide) {
             let guide = await guideModel.findOne({ email: req.session.guide.email });
             if (guide) {
-                return next(); // Utilisateur trouvé dans la base de données, autorisez l'accès à la route suivante
+                return next();
             }
         }
         throw new Error("Utilisateur non connecté");
@@ -14,7 +14,7 @@ const authguard = async (req, res, next) => {
         console.error(error.message);
         res.status(401).render('pages/login.twig', {
             title: "connexion",
-            errorAuth: error.message // passez le message d'erreur au modele pour qu'il puisse etre affiché dans votre template
+            errorAuth: error.message
         });
     }
 };

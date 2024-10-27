@@ -1,34 +1,35 @@
 {% extends "../layouts/base.twig" %}
 
 {% block style %}
-    <link rel="stylesheet" href="/assets/css/childDashboard.css">
+	<link rel="stylesheet" href="/assets/css/childDashboard.css">
 {% endblock %}
 
 {% block title %}
-    <title>{{title}}</title>
+	<title>{{title}}</title>
 {% endblock %}
 
 {% block main %}
-    <main>
-        <section>
-            <h1>Dashboard de {{ child.firstname }}</h1>
+	<main>
+		<section>
+			<h1>Dashboard de
+				{{ child.firstname }}</h1>
 
-            <!-- Afficher les points et comportement de l'enfant -->
-            <div class="child-info">
-                <p class="points-actuels">Points actuels : {{ child.points }}</p>
-                <p class="points-comportement">Points de comportement : {{ child.comportement }}</p>
-            </div>
+			<div class="child-info">
+				<p>Points actuels :
+					{{ child.points }}</p>
+				<p>Points de comportement :
+					{{ child.comportement }}</p>
+			</div>
 
-            <!-- Boutons pour accéder aux catalogues des quêtes et des récompenses -->
-            <div class="catalog-buttons">
-                <a href="/questCatalog/{{ child._id }}" class="btn">Catalogue des Quêtes</a>
-                <a href="/rewardCatalog/{{ child._id }}" class="btn">Catalogue des Récompenses</a>
-            </div>
+			<div class="catalog-buttons">
+				<a href="/questCatalog/{{ child._id }}" class="btn">Catalogue des Quêtes</a>
+				<a href="/rewardCatalog/{{ child._id }}" class="btn">Catalogue des Récompenses</a>
+			</div>
 
-            <div class="back-button">
-                <a href="/chooseProfile" class="btn">Retour à la sélection de profil</a>
-            </div>
+			<div class="back-button">
+				<a href="/chooseProfile" class="btn">Retour à la sélection de profil</a>
+			</div>
 
-        </section>
-    </main>
+		</section>
+	</main>
 {% endblock %}

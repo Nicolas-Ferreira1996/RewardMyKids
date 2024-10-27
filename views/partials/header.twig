@@ -1,31 +1,31 @@
 {% block style %}
-    <link rel="stylesheet" href="/assets/css/header.css">
+	<link rel="stylesheet" href="/assets/css/header.css">
 {% endblock %}
 
 <header>
-    <div>
-        <img src="/assets/images/logo_rewardMyKids.svg" alt="logo RewardMyKids">
-    </div>
-    <nav>
-        <ul>
-            {% if title in ['Inscription', 'Connexion', 'Home'] %} {# = {% if title == 'Inscription' or title == 'Connexion' or title == 'Home' %} #} 
-                <li>
-                    <a href="/home">Accueil</a>
-                </li>
-                <li>
-                    <a href="/subscribe">Inscription</a>
-                </li>
-                <li>
-                    <a href="/login">Connexion</a>
-                </li>
-            {% else %}
-                <li>
-                    <a href="/chooseProfile">Changer de Profil</a>
-                </li>
-                <li>
-                    <a href="/logout">Déconnexion</a>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
+	<div>
+		<img src="/assets/images/logo_rewardMyKids.svg" alt="logo RewardMyKids">
+	</div>
+	<nav>
+		<ul>
+			{% if title in ['Inscription', 'Connexion', 'Home'] %}
+				<li>
+					<a href="/home">Accueil</a>
+				</li>
+				<li>
+					<a href="/subscribe">Inscription</a>
+				</li>
+				<li>
+					<a href="/login">Connexion</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="/chooseProfile">Changer de Profil</a>
+				</li>
+				<li>
+					<a href="/logout">Déconnexion</a>
+				</li>
+			{% endif %}
+		</ul>
+	</nav>
 </header>

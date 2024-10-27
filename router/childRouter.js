@@ -3,7 +3,7 @@ const childModel = require('../models/childModel');
 const guideModel = require('../models/guideModel');
 const authguard = require("../services/authguard");
 
-// Route GET pour afficher le formulaire d'ajout d'un enfant
+
 childRouter.get('/addChild', authguard, (req, res) => {
     res.render("pages/addChild.twig", {
         guide: req.session.guide,
@@ -11,28 +11,27 @@ childRouter.get('/addChild', authguard, (req, res) => {
     });
 });
 
-// Route POST pour ajouter un enfant
+
 childRouter.post('/addChild', authguard, async (req, res) => {
     try {
-        // Création d'un nouvel enfant
         const newChild = new childModel(req.body);
-        newChild.validateSync(); // Validation des données avant sauvegarde
-        await newChild.save(); // Sauvegarde dans la base de données
-        await guideModel.updateOne( // Mise à jour du guide pour ajouter l'enfant à la collection
+        newChild.validateSync();
+        await newChild.save();
+        await guideModel.updateOne(
             { _id: req.session.guide._id },
             { $push: { childrenCollection: newChild._id } }
         );
         res.redirect("/guideDashboard");
     } catch (error) {
         console.log(error);
-        res.render("pages/addChild.twig", { // En cas d'erreur, re-rendre la page d'ajout avec un message d'erreur
+        res.render("pages/addChild.twig", {
             guide: req.session.guide,
             error: error.message
         });
     }
 });
 
-// Route GET pour afficher le formulaire d'édition d'un enfant
+
 childRouter.get('/editChild/:childId', authguard, async (req, res) => {
     try {
         const childId = req.params.childId;
@@ -43,7 +42,7 @@ childRouter.get('/editChild/:childId', authguard, async (req, res) => {
         }
 
         res.render('pages/editChild.twig', {
-            child: child, // Passe les informations actuelles de l'enfant au template
+            child: child,
             guide: req.session.guide,
             title: "Modifier un enfant"
         });
@@ -54,40 +53,36 @@ childRouter.get('/editChild/:childId', authguard, async (req, res) => {
 });
 
 
-// Route POST pour modifier un enfant
 childRouter.post('/editChild/:childId', authguard, async (req, res) => {
     try {
         const childId = req.params.childId;
-        const { firstname, points, comportement } = req.body;
+        const { firstname, points } = req.body;
 
-        // Mettre à jour les informations de l'enfant
         await childModel.findByIdAndUpdate(childId, {
             firstname: firstname,
             points: points,
         });
 
-        res.redirect('/guideDashboard'); // Redirection après modification réussie
+        res.redirect('/guideDashboard');
     } catch (error) {
         console.error("Erreur lors de la mise à jour de l'enfant:", error);
         res.status(500).send("Erreur lors de la mise à jour de l'enfant.");
     }
 });
 
-// Route POST pour supprimer un enfant
+
 childRouter.post('/deleteChild/:childId', authguard, async (req, res) => {
     try {
         const childId = req.params.childId;
 
-        // Supprimer l'enfant de la collection d'enfants du guide
         await guideModel.updateOne(
             { _id: req.session.guide._id },
             { $pull: { childrenCollection: childId } }
         );
 
-        // Supprimer l'enfant lui-même
         await childModel.findByIdAndDelete(childId);
 
-        res.redirect('/guideDashboard'); // Redirection après suppression réussie
+        res.redirect('/guideDashboard');
     } catch (error) {
         console.error("Erreur lors de la suppression de l'enfant:", error);
         res.status(500).send("Erreur lors de la suppression de l'enfant.");
@@ -95,18 +90,15 @@ childRouter.post('/deleteChild/:childId', authguard, async (req, res) => {
 });
 
 
-
-// Route pour afficher le tableau de bord d'un enfant
 childRouter.get('/childDashboard/:childId', authguard, async (req, res) => {
     try {
         const childId = req.params.childId;
 
-        // Vérifier si le profil sélectionné est un enfant
         if (!req.session.selectedProfile || req.session.selectedProfile.role !== 'child' || req.session.selectedProfile.childId !== childId) {
             return res.redirect('/chooseProfile');
         }
 
-        const child = await childModel.findById(childId); // Modèle enfant
+        const child = await childModel.findById(childId);
 
         if (!child) {
             return res.status(404).send("Enfant non trouvé");

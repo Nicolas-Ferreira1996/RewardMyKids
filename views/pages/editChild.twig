@@ -1,38 +1,35 @@
 {% extends "../layouts/base.twig" %}
 
 {% block style %}
-    <link rel="stylesheet" href="/assets/css/editChild.css">
+	<link rel="stylesheet" href="/assets/css/editChild.css">
 {% endblock %}
 
 {% block title %}
-    <title>{{ title }}</title>
+	<title>{{ title }}</title>
 {% endblock %}
 
 {% block main %}
-    <main>
-        <section class="edit-section">
-            <div class="form-container">
-                <h1>Modifier les informations de {{ child.firstname }}</h1>
+	<main>
+		<section class="form-container">
+			<h1>Modifier les informations de
+				{{ child.firstname }}</h1>
 
-                <!-- Formulaire pour modifier les informations de l'enfant -->
-                <form action="/editChild/{{ child._id }}" method="POST">
-                    <label for="firstname">Prénom</label>
-                    <input type="text" name="firstname" id="firstname" value="{{ child.firstname }}" required>
+			<form action="/editChild/{{ child._id }}" method="POST">
+				<label for="firstname">Prénom</label>
+				<input type="text" name="firstname" id="firstname" value="{{ child.firstname }}" required>
+				<label for="points">Points</label>
+				<input type="number" name="points" id="points" value="{{ child.points }}" required>
 
-                    <label for="points">Points</label>
-                    <input type="number" name="points" id="points" value="{{ child.points }}" required>
+				<button class="modif-btn" type="submit">Modifier</button>
+			</form>
 
-                    <button type="submit">Modifier</button>
-                </form>
+			<form action="/deleteChild/{{ child._id }}" method="POST">
+				<button type="submit" class="delete-btn">Supprimer cet enfant</button>
+			</form>
 
-                <!-- Formulaire pour supprimer l'enfant -->
-                <form action="/deleteChild/{{ child._id }}" method="POST">
-                    <button type="submit" class="delete-btn">Supprimer cet enfant</button>
-                </form>
-
-                <!-- Lien de retour au dashboard -->
-                <a href="/guideDashboard" class="back-link">Retour au dashboard du guide</a>
-            </div>
-        </section>
-    </main>
+			<div class="back-button">
+				<a href="/guideDashboard" class="btn">Retour au dashboard du guide</a>
+			</div>
+		</section>
+	</main>
 {% endblock %}
